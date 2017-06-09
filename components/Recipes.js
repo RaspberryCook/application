@@ -48,13 +48,14 @@ export default class Recipes extends React.Component {
       <View style={{flex: 1, paddingTop: 20}}>
         <ListView
           dataSource={this.state.dataSource}
+          style={styles.list}
           renderRow={ (rowData) =>
-            <View>
-            <Image
-                style={{width: 50, height: 50}}
+            <View style={styles.figure}>
+              <Image
+                style={styles.picture}
                 source={{uri: 'https://raspberry-cook.fr' + rowData.image.url }}
               />
-              <Text style={styles.recipe}>{rowData.name}</Text>
+              <Text style={styles.label}>{rowData.name}</Text>
             </View>
           }
         />
@@ -64,9 +65,25 @@ export default class Recipes extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  recipe: {
-    fontSize: 16,
+  list:{
+
+  },
+  figure:{
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 20,
+    marginBottom: 20,
+
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  picture: {
+    width: 200,
+    height: 200
+  },
+  label: {
+    fontSize: 18,
     textAlign: 'center',
-    margin: 10,
+    margin: 4,
   },
 });
