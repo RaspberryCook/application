@@ -1,6 +1,5 @@
 import React from 'react'
-
-import {AppRegistry, StyleSheet, Text, View, ActivityIndicator, ListView } from 'react-native'
+import {StyleSheet, Text, View} from 'react-native'
 
 export default class Title extends React.Component {
   render() {
