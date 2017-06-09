@@ -2,10 +2,11 @@ import React from 'react'
 import {
   AppRegistry,
   ActivityIndicator,
-  StyleSheet, 
+  StyleSheet,
   ListView,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
 
 export default class Recipes extends React.Component {
@@ -47,9 +48,25 @@ export default class Recipes extends React.Component {
       <View style={{flex: 1, paddingTop: 20}}>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={ (rowData) => <Text>{rowData.name}</Text> }
+          renderRow={ (rowData) =>
+            <View>
+            <Image
+                style={{width: 50, height: 50}}
+                source={{uri: 'https://raspberry-cook.fr' + rowData.image.url }}
+              />
+              <Text style={styles.recipe}>{rowData.name}</Text>
+            </View>
+          }
         />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  recipe: {
+    fontSize: 16,
+    textAlign: 'center',
+    margin: 10,
+  },
+});
