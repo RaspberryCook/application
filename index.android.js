@@ -7,20 +7,13 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
-  Text,
   View,
-  ActivityIndicator, ListView
+  ActivityIndicator,
+  ListView,
+  Text
 } from 'react-native';
 
-
-class Title extends Component {
-  render() {
-    return (
-      <Text style={styles.title}>Hello {this.props.name}!</Text>
-    );
-  }
-}
+import Title from './components/Title';
 
 export default class raspberry_cook extends Component {
 
@@ -62,29 +55,14 @@ export default class raspberry_cook extends Component {
       <View style={{flex: 1, paddingTop: 20}}>
         <Title name='Raspberry Cook' />
         <ListView
-          style={styles.recipes}
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text>{rowData.name}</Text>}
+          renderRow={ (rowData) => <Text>{rowData.name}</Text> }
         />
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  title: {
-    fontSize: 30,
-    textAlign: 'center',
-    margin: 10,
-  },
-  recipes: {
-  },
-});
+
 
 AppRegistry.registerComponent('raspberry_cook', () => raspberry_cook);
