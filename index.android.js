@@ -13,6 +13,15 @@ import {
   ActivityIndicator, ListView
 } from 'react-native';
 
+
+class Title extends Component {
+  render() {
+    return (
+      <Text style={styles.title}>Hello {this.props.name}!</Text>
+    );
+  }
+}
+
 export default class raspberry_cook extends Component {
 
   constructor(props) {
@@ -43,7 +52,7 @@ export default class raspberry_cook extends Component {
     if (this.state.isLoading) {
       return (
         <View style={{flex: 1, paddingTop: 20}}>
-          <Text style={styles.title}>Raspberry Cook</Text>
+          <Title name='Raspberry Cook' />
           <ActivityIndicator />
         </View>
       );
@@ -51,7 +60,7 @@ export default class raspberry_cook extends Component {
 
     return (
       <View style={{flex: 1, paddingTop: 20}}>
-        <Text style={styles.title}>Raspberry Cook</Text>
+        <Title name='Raspberry Cook' />
         <ListView
           style={styles.recipes}
           dataSource={this.state.dataSource}
