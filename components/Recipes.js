@@ -67,7 +67,7 @@ export default class Recipes extends React.Component {
                 source={{uri: 'https://raspberry-cook.fr' + rowData.image.url }}
               />
               <Button
-                onPress={() => navigate('Recipe') }
+                onPress={() => navigate('Recipe', {recipeData: rowData})}
                 title={rowData.name}
               />
             </View>
