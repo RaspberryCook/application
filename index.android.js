@@ -1,12 +1,30 @@
 import React from 'react';
 import {
-  AppRegistry
+  AppRegistry,
+  View
 } from 'react-native';
 import {
   StackNavigator
 } from 'react-navigation';
-import Home from './components/Home';
 
-const raspberry_cook = StackNavigator({ Home: { screen: Home },  });
+import Home from './components/Home';
+import Recipe from './components/Recipe';
+import Recipes from './components/Recipes';
+
+const App = StackNavigator({
+  Recipes: { screen: Recipes },
+  Recipe: { screen: Recipe },
+});
+
+export default class raspberry_cook extends React.Component {
+  render() {
+    return (
+      <View style={{flex: 1}}>
+        <App  />
+      </View>
+    );
+  }
+}
+
 
 AppRegistry.registerComponent('raspberry_cook', () => raspberry_cook);

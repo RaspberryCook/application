@@ -2,14 +2,23 @@ import React from 'react'
 import {
   AppRegistry,
   ActivityIndicator,
+  Button,
   StyleSheet,
   ListView,
   Text,
   View,
   Image
 } from 'react-native';
+import {
+  StackNavigator,
+ } from 'react-navigation';
+
+import Recipe from './Recipe';
+
 
 export default class Recipes extends React.Component {
+
+  static navigationOptions = { title: 'Recettes', };
 
   constructor(props) {
     super(props);
@@ -44,8 +53,10 @@ export default class Recipes extends React.Component {
       );
     }
 
+    const { navigate } = this.props.navigation;
+
     return (
-      <View style={{flex: 1, paddingTop: 20}}>
+      <View style={{flex: 1}}>
         <ListView
           dataSource={this.state.dataSource}
           style={styles.list}
@@ -55,7 +66,10 @@ export default class Recipes extends React.Component {
                 style={styles.picture}
                 source={{uri: 'https://raspberry-cook.fr' + rowData.image.url }}
               />
-              <Text style={styles.label}>{rowData.name}</Text>
+              <Button
+                onPress={() => navigate('Recipe') }
+                title={rowData.name}
+              />
             </View>
           }
         />
