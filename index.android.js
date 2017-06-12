@@ -10,28 +10,17 @@ import {
 import {
   StackNavigator
 } from 'react-navigation';
-import Title from './components/Title';
 import Recipes from './components/Recipes';
 
 
+export default class Home extends React.Component {
 
-
-
-
-export default class raspberry_cook extends React.Component {
-
-  navigation = "alex";
-
-  static navigationOptions = { title: 'Welcome', };
+  static navigationOptions = { title: 'Raspberry Cook', };
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <View style={{flex: 1, paddingTop: 20}}>
-        <Title name='Raspberry Cook' />
-
         <Recipes />
-        <Button title="Go to Jane's profile" onPress={() => navigate('Profile', { name: 'Jane' }) } />
       </View>
     );
   }
@@ -39,7 +28,7 @@ export default class raspberry_cook extends React.Component {
 
 
 
-const App = StackNavigator({ Home: { screen: raspberry_cook },  });
+const raspberry_cook = StackNavigator({ Home: { screen: Home },  });
 
 
 AppRegistry.registerComponent('raspberry_cook', () => raspberry_cook);
