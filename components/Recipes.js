@@ -65,6 +65,7 @@ export default class Recipes extends React.Component {
               <Image
                 style={styles.picture}
                 source={{uri: 'https://raspberry-cook.fr' + rowData.image.url }}
+                defaultSource={require('./assets/default.png')}
               />
               <Button
                 onPress={() => navigate('Recipe', {recipeData: rowData})}
@@ -93,7 +94,8 @@ const styles = StyleSheet.create({
   },
   picture: {
     width: 200,
-    height: 200
+    height: 200,
+    backgroundColor: "#cccccc"
   },
   label: {
     fontSize: 18,
