@@ -45,14 +45,17 @@ export default class Recipes extends React.Component {
       });
   }
 
-
-  fetchMoreRecipes() {
-    let newPage = this.props.page + 1;
+  incrementPage() {
     this.setState(previousState => {
       previousState.page += 1;
       return previousState;
-
     });
+    return this.state.page
+  }
+
+
+  fetchMoreRecipes() {
+    this.incrementPage()
   }
 
   render() {
