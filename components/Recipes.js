@@ -23,7 +23,8 @@ export default class Recipes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true
+      isLoading: true,
+      page: 1
     }
   }
 
@@ -44,6 +45,16 @@ export default class Recipes extends React.Component {
       });
   }
 
+
+  fetchMoreRecipes() {
+    let newPage = this.props.page + 1;
+    this.setState(previousState => {
+      previousState.page += 1;
+      return previousState;
+
+    });
+  }
+
   render() {
     if (this.state.isLoading) {
       return (
@@ -57,7 +68,9 @@ export default class Recipes extends React.Component {
 
     return (
       <View style={{flex: 1}}>
+      <Text>Bonjour: {this.state.page}</Text>
         <ListView
+          onEndReached={this.fetchMoreRecipes.bind(this)}
           dataSource={this.state.dataSource}
           style={styles.list}
           renderRow={ (rowData) =>
