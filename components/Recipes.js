@@ -26,23 +26,28 @@ export default class Recipes extends React.Component {
       isLoading: true,
       page: 1
     }
+    this.fetchRecipes();
+  }
+
+
+  fetchRecipes() {
+    return fetch('https://raspberry-cook.fr/recipes?page=' + this.state.page + '&format=json')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+      this.setState(previousState => {
+        previousState.isLoading = false;
+        previousState.dataSource = ds.cloneWithRows(responseJson);
+        return previousState;
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 
   componentDidMount() {
-    return fetch('https://raspberry-cook.fr/recipes.json')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.setState({
-          isLoading: false,
-          dataSource: ds.cloneWithRows(responseJson),
-        }, function() {
-          // do something with new state
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    return this.fetchRecipes();
   }
 
   incrementPage() {
@@ -54,8 +59,16 @@ export default class Recipes extends React.Component {
   }
 
 
+  setLoading(bool) {
+    this.setState(previousState => {
+      previousState.isLoading = bool;
+      return previousState;
+    });
+  }
+
+
   fetchMoreRecipes() {
-    this.incrementPage()
+    this.incrementPage();
   }
 
   render() {
@@ -71,7 +84,7 @@ export default class Recipes extends React.Component {
 
     return (
       <View style={{flex: 1}}>
-      <Text>Bonjour: {this.state.page}</Text>
+      <Text>Page number: {this.state.page}</Text>
         <ListView
           onEndReached={this.fetchMoreRecipes.bind(this)}
           dataSource={this.state.dataSource}
