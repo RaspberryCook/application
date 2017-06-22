@@ -13,6 +13,7 @@ import {
   StackNavigator,
  } from 'react-navigation';
 
+ import SearchForm from './SearchForm';
 import Recipe from './Recipe';
 
 
@@ -48,6 +49,7 @@ export default class Recipes extends React.Component {
     if (this.state.isLoading) {
       return (
         <View style={{flex: 1, paddingTop: 20}}>
+          <SearchForm />
           <ActivityIndicator />
         </View>
       );
@@ -57,6 +59,7 @@ export default class Recipes extends React.Component {
 
     return (
       <View style={{flex: 1}}>
+        <SearchForm />
         <ListView
           dataSource={this.state.dataSource}
           style={styles.list}
