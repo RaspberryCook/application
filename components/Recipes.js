@@ -24,12 +24,13 @@ export default class Recipes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true
-    }
+      isLoading: true,
+      url: 'https://raspberry-cook.fr/recipes.json'
+    };
   }
 
   componentDidMount() {
-    return fetch('https://raspberry-cook.fr/recipes.json')
+    return fetch(this.state.url)
       .then((response) => response.json())
       .then((responseJson) => {
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -59,7 +60,8 @@ export default class Recipes extends React.Component {
 
     return (
       <View style={{flex: 1}}>
-        <SearchForm />
+        <SearchForm onChange={(text) => this.setState({url: "https://raspberry-cook.fr/format=json&recipes?name=" + text}) }/>
+        <Text style={{padding: 10, fontSize: 15}}>{this.state.url}</Text>
         <ListView
           dataSource={this.state.dataSource}
           style={styles.list}
@@ -68,8 +70,7 @@ export default class Recipes extends React.Component {
               <Image
                 style={styles.picture}
                 source={{uri: 'https://raspberry-cook.fr' + rowData.image.url }}
-                defaultSource={require('./assets/default.png')}
-              />
+                defaultSource={require('./assets/default.png')} />
               <Button
                 onPress={() => navigate('Recipe', {recipeData: rowData})}
                 title={rowData.name}
