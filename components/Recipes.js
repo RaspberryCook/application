@@ -29,22 +29,29 @@ export default class Recipes extends React.Component {
     };
   }
 
-  componentDidMount() {
+
+  fetchRecipes() {
     return fetch(this.state.url)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.setState({
-          isLoading: false,
-          dataSource: ds.cloneWithRows(responseJson),
-        }, function() {
-          // do something with new state
-        });
-      })
-      .catch((error) => {
-        console.error(error);
+    .then((response) => response.json() )
+    .then((responseJson) => {
+      let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+      this.setState({
+        isLoading: false,
+        dataSource: ds.cloneWithRows(responseJson),
+      }, function() {
+        // do something with new state
       });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
+
+  componentDidMount() {
+    return this.fetchRecipes();
+  }
+
+
 
   render() {
     if (this.state.isLoading) {
@@ -60,8 +67,10 @@ export default class Recipes extends React.Component {
 
     return (
       <View style={{flex: 1}}>
-        <SearchForm onChange={(text) => this.setState({url: "https://raspberry-cook.fr/format=json&recipes?name=" + text}) }/>
-        <Text style={{padding: 10, fontSize: 15}}>{this.state.url}</Text>
+        <SearchForm onChange={(text) => {
+          this.setState({url: "https://raspberry-cook.fr/recipes?format=json&name=" + text});
+          this.fetchRecipes();
+        }} />
         <ListView
           dataSource={this.state.dataSource}
           style={styles.list}
