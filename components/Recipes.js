@@ -31,6 +31,10 @@ export default class Recipes extends React.Component {
 
 
   fetchRecipes() {
+    this.setState({
+      isLoading: true
+    });
+
     return fetch(this.state.url)
     .then((response) => response.json() )
     .then((responseJson) => {

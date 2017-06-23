@@ -22,7 +22,7 @@ export default class SearchForm extends React.Component {
       <View style={{padding: 5}}>
         <TextInput
           style={{height: 40}}
-          placeholder="Type here to translate!"
+          placeholder="Entrez le nom d'unce recette ou un ingrédient"
           onChangeText={this.props.onChange} />
       </View>
     );
