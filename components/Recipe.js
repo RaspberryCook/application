@@ -7,6 +7,8 @@ import {
   FlatList
 } from 'react-native';
 
+import Times from './recipe/Times';
+
 
 export default class Recipe extends React.Component {
 
@@ -23,6 +25,7 @@ export default class Recipe extends React.Component {
           style={styles.picture}
           source={{uri: 'https://raspberry-cook.fr' + params.recipeData.image.url }}
         />
+        <Times />
         <Text style={styles.text}>{ params.recipeData.description }</Text>
         <Text style={styles.subTitle}>Ingrédients</Text>
         <Text style={styles.text}>{ params.recipeData.ingredients }</Text>
