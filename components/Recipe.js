@@ -25,7 +25,7 @@ export default class Recipe extends React.Component {
           style={styles.picture}
           source={{uri: 'https://raspberry-cook.fr' + params.recipeData.image.url }}
         />
-        <Times />
+        <Times times={params.recipeData}/>
         <Text style={styles.text}>{ params.recipeData.description }</Text>
         <Text style={styles.subTitle}>Ingrédients</Text>
         <Text style={styles.text}>{ params.recipeData.ingredients }</Text>
@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#cccccc"
   },
   subTitle: {
-    marginTop: 50,
     fontSize: 22,
     color: '#96281B'
   },

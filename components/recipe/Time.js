@@ -9,10 +9,15 @@ import {
 export default class Time extends React.Component {
 
   render() {
-    return (
-      <View style={{backgroundColor: this.props.backgroundColor, height: 30,}}>
-        <Text>{ this.props.name }</Text>
-      </View>
-    );
+    if(this.props.value == "0"){
+      return null;
+    }else{
+      return(
+        <View style={{flex: 1, flexDirection: 'row'}}>
+          <Text style={{fontWeight: 'bold', fontSize: 16}}>{ this.props.name } :</Text>
+          <Text style={{fontSize: 16}}>{ this.props.value }</Text>
+        </View>
+      );
+    }
   }
 }
