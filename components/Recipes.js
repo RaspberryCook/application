@@ -28,7 +28,7 @@ export default class Recipes extends React.Component {
   }
 
   componentDidMount() {
-    return fetch('https://raspberry-cook.fr/recipes.json')
+    return fetch('http://raspberry-cook.fr/recipes.json')
       .then((response) => response.json())
       .then((responseJson) => {
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
